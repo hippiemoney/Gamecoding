@@ -1,0 +1,79 @@
+import random
+
+# Define character classes
+class Character:
+    def __init__(self, name):
+        self.name = name
+
+class DJ(Character):
+    def __init__(self):
+        super().__init__("DJ")
+    
+    def roll_dice(self):
+        return random.randint(1, 6)
+
+class Hippie(Character):
+    def __init__(self):
+        super().__init__("Hippie")
+    
+    def roll_dice(self):
+        return random.randint(1, 6)
+
+class Mermaid(Character):
+    def __init__(self):
+        super().__init__("Mermaid")
+    
+    def roll_dice(self):
+        return random.randint(1, 6)
+
+class Pirate(Character):
+    def __init__(self):
+        super().__init__("Pirate")
+    
+    def roll_dice(self):
+        return random.randint(1, 6)
+
+# Define island locations and their effects
+locations = {
+    "Beach": "Relax and gain +1 health",
+    "Jungle": "Encounter a wild animal and lose -1 health",
+    "Cave": "Discover a treasure chest and gain +1 treasure",
+    "Underwater Cave": "Explore the depths and find hidden treasures"
+}
+
+# Game setup
+characters = [DJ(), Hippie(), Mermaid(), Pirate()]
+
+# Main game loop
+def main():
+    print("Welcome to Island Adventure!")
+    print("Choose your character:")
+    for i, character in enumerate(characters, start=1):
+        print(f"{i}. {character.name}")
+
+    choice = int(input("Enter the number of your chosen character: "))
+    player = characters[choice - 1]
+
+    print(f"You chose {player.name}.")
+
+    # Start the game loop
+    while True:
+        input("Press Enter to roll the dice...")
+        roll_result = player.roll_dice()
+        print(f"You rolled: {roll_result}")
+
+        # Determine the location based on dice roll
+        location = random.choice(list(locations.keys()))
+        print(f"You landed on: {location}")
+
+        # Apply the effects of the location
+        print(f"Effect: {locations[location]}")
+
+        # End game condition
+        play_again = input("Do you want to play again? (yes/no): ")
+        if play_again.lower() != "yes":
+            print("Thanks for playing!")
+            break
+
+if __name__ == "__main__":
+    main()
